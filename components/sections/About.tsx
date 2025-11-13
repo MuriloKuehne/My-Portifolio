@@ -143,7 +143,7 @@ export const About = () => {
                           <p className="font-medium text-sm">{cert.name}</p>
                           <p className="text-xs text-muted-foreground">
                             {cert.issuer}
-                            {cert.hours && ` • ${cert.hours}h`}
+                            {"hours" in cert && cert.hours ? ` • ${cert.hours}h` : ""}
                           </p>
                         </div>
                         <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors ml-2" />
@@ -177,7 +177,7 @@ export const About = () => {
                           <p className="font-medium text-sm">{cert.name}</p>
                           <p className="text-xs text-muted-foreground">
                             {cert.issuer}
-                            {cert.hours && ` • ${cert.hours}h`}
+                            {"hours" in cert && cert.hours ? ` • ${cert.hours}h` : ""}
                           </p>
                         </div>
                         <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors ml-2" />
