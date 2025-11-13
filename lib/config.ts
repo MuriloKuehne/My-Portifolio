@@ -39,7 +39,7 @@ export const personalInfo = {
   languages: [
     { name: "Portuguese", flag: "🇧🇷" },
     { name: "Spanish", flag: "🇪🇸" },
-    { name: "English", flag: "🇬🇧" },
+    { name: "English", flag: "🇺🇸" },
     { name: "German", flag: "🇩🇪" },
   ],
   certifications: [
