@@ -52,10 +52,10 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ y: -5 }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -8, scale: 1.02 }}
     >
-      <Card className="h-full flex flex-col hover:border-primary/50 transition-colors">
+      <Card className="h-full flex flex-col hover:border-primary/50 transition-smooth hover:shadow-xl hover:shadow-primary/10">
         <CardHeader className="pb-3 flex-shrink-0">
           <CardTitle className="text-lg mb-2 line-clamp-1">{project.title}</CardTitle>
           <CardDescription className="text-sm line-clamp-2">{project.description}</CardDescription>
@@ -66,39 +66,49 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
               {project.tags.map((tag) => {
                 const color = getTagColor(tag);
                 return (
-                  <Badge
+                  <motion.div
                     key={tag}
-                    variant="outline"
-                    className={`text-xs ${color.bg} ${color.text} ${color.border}`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
-                    {tag}
-                  </Badge>
+                    <Badge
+                      variant="outline"
+                      className={`text-xs ${color.bg} ${color.text} ${color.border} transition-smooth cursor-default`}
+                    >
+                      {tag}
+                    </Badge>
+                  </motion.div>
                 );
               })}
             </div>
           )}
           <div className="flex gap-4 pt-1 mt-auto flex-shrink-0">
             {project.link && (
-              <Link
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-xs text-primary hover:underline"
-              >
-                <ExternalLink className="h-3.5 w-3.5" />
-                Live
-              </Link>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-xs text-primary hover:underline transition-smooth group"
+                >
+                  <ExternalLink className="h-3.5 w-3.5 group-hover:rotate-12 transition-transform" />
+                  Live
+                </Link>
+              </motion.div>
             )}
             {project.github && (
-              <Link
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <Github className="h-3.5 w-3.5" />
-                Code
-              </Link>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-smooth group"
+                >
+                  <Github className="h-3.5 w-3.5 group-hover:rotate-12 transition-transform" />
+                  Code
+                </Link>
+              </motion.div>
             )}
           </div>
         </CardContent>
