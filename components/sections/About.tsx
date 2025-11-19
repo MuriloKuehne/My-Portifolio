@@ -12,11 +12,45 @@ export const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [imageError, setImageError] = useState(false);
+  const imageContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const img = new window.Image();
-    img.onerror = () => setImageError(true);
-    img.src = "/profile-photo.jpg";
+    const container = imageContainerRef.current;
+    if (!container) return;
+
+    const handleError = () => setImageError(true);
+
+    const setupImageErrorHandler = (img: HTMLImageElement) => {
+      img.addEventListener("error", handleError);
+      if (img.complete && img.naturalHeight === 0) {
+        setImageError(true);
+      }
+    };
+
+    const img = container.querySelector("img");
+    if (img) {
+      setupImageErrorHandler(img as HTMLImageElement);
+    }
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeName === "IMG") {
+            setupImageErrorHandler(node as HTMLImageElement);
+          }
+        });
+      });
+    });
+
+    observer.observe(container, { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+      const img = container.querySelector("img");
+      if (img) {
+        img.removeEventListener("error", handleError);
+      }
+    };
   }, []);
 
   return (
@@ -45,6 +79,7 @@ export const About = () => {
               className="flex items-start justify-center lg:justify-start w-full"
             >
               <motion.div
+                ref={imageContainerRef}
                 className="relative w-full max-w-xs mx-auto lg:max-w-full lg:mx-0 aspect-[2/3] min-h-[300px] sm:min-h-[400px] lg:min-h-[500px] rounded-2xl overflow-hidden border-4 border-border shadow-2xl bg-gradient-to-br from-primary/20 via-primary/10 to-primary/5 transition-smooth"
                 whileHover={{ scale: 1.02, y: -4 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -55,7 +90,7 @@ export const About = () => {
                     alt={personalInfo.name}
                     fill
                     className="object-cover object-center object-top"
-                    sizes="(max-width: 1024px) 100vw, 33vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     priority
                   />
                 ) : (
