@@ -1,9 +1,9 @@
 ---
 title: DeutschLernen
 description: A German language learning application built with Next.js and TypeScript, designed to help users learn and practice German vocabulary, grammar, and language skills.
-status: completed
-tags: [Next.js, TypeScript, React, Tailwind CSS]
-link: https://deutsch-lernen-o6y47kjyr-murilokuehnes-projects.vercel.app
+status: in-progress
+tags: [Next.js, TypeScript, React, Tailwind CSS, Language Learning, Education, Responsive, Interactive, Vocabulary, Grammar, Progress Tracking]
+link: https://deutsch-lernen-nu.vercel.app
 github: https://github.com/MuriloKuehne/DeutschLernen
 ---
 
