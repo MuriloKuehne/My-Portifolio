@@ -1,7 +1,7 @@
 ---
 title: HabitZen
 description: A modern habit tracking application with gamification system, built with Next.js 15 and Supabase. Track your daily and weekly habits, earn XP, level up, and maintain streaks.
-status: in-progress
+status: completed
 tags: [Next.js, TypeScript, Supabase, React, Tailwind CSS, Recharts, Zod, Playwright, shadcn/ui, date-fns]
 github: https://github.com/MuriloKuehne/HabitZen
 link: https://habit-zen-six.vercel.app

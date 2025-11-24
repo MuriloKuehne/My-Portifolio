@@ -1,7 +1,7 @@
 ---
 title: Kuehne Clinic Landing Page
 description: A comprehensive dental clinic landing page with appointment booking, team showcase, and location features built with Next.js, TypeScript, and Tailwind CSS.
-status: in-progress
+status: completed
 tags: [Next.js, TypeScript, Tailwind CSS, shadcn/ui, Landing Page]
 link: https://kuehne-clinica-lp.vercel.app
 github: https://github.com/MuriloKuehne/kuehne-clinica-lp
